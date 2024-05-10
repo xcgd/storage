@@ -325,6 +325,9 @@ class IrAttachment(models.Model):
                 ),
             ).write(vals)
 
+        if "name" in vals:
+            self._enforce_meaningful_storage_filename()
+
         return True
 
     @api.model

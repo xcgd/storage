@@ -182,6 +182,13 @@ class FSStorage(models.Model):
             "eval_options_from_env": {},
         }
 
+    def _server_env_read_from_config(self, field_name, config_getter):
+        value = super()._server_env_read_from_config(field_name, config_getter)
+        # replace {db_name} with the dbname
+        if field_name == "directory_path":
+            value = value.format(db_name=self.env.cr.dbname)
+        return value
+
     def write(self, vals):
         self.__fs = None
         self.env.registry.clear_cache()

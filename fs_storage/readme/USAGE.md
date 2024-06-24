@@ -65,6 +65,8 @@ for the following fields:
 - options
 - directory_path
 
+When evaluating directory_path, `{db_name}` is replaced by the database name.
+
 ## Migration from storage_backend
 
 The fs_storage addon can be used to replace the storage_backend addon.
